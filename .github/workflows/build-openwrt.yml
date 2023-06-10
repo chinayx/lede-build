@@ -62,10 +62,13 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Cache
-      uses: actions/cache@v3
+      uses: actions/cache@main
       with:
-        ccache: 'true'
-        prefix: ${{ github.workspace }}/openwrt
+        path: |
+          /workdir/openwrt/dl
+          /workdir/openwrt/build_dir
+          /workdir/openwrt/staging_dir
+        key:  ${{ runner.os }}-ccache-${{ hashFiles('**/build_dir/**') }}
 
     - name: Load custom feeds
       run: |
