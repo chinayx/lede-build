@@ -65,9 +65,7 @@ jobs:
       uses: actions/cache@main
       with:
         path: |
-          /workdir/openwrt/dl
-          /workdir/openwrt/build_dir
-          /workdir/openwrt/staging_dir
+          /workdir/openwrt
         key:  ${{ runner.os }}-ccache-${{ hashFiles('**/build_dir/**') }}
 
     - name: Load custom feeds
